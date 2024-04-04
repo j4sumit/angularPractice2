@@ -3,25 +3,40 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-test',
   template: `<h1>
-    <!-- String Interpolation -->
     {{"welcome"+ name}} 
   </h1>
-  <input [id]="myId" type="text" value="Sumit">
-   <!-- Interpolation not worked on boolean value -->
-  <input disabled={{isDiabaled}} id={myId} type="text" value="Sumit">
-  <!-- Property binding worked on boolean value -->
-  <input [disabled]="isDiabaled" id={myId} type="text" value="Sumit"> 
-
+  <h2 class="text-special">Practice to successed in Accenture 1</h2>
+  <h2 [class]="successClass">Practice to successed in Accenture 2</h2>
+  <h2 class="text-special" [class]="successClass">Practice to successed in Accenture 3</h2>
+  <h2 class="text-special" [class]="successClass">Practice to successed in Accenture 4</h2>
+  <!-- for only single class -->
+  <h2 [class.text-danger]="hasError">Practice to successed in Accenture 5</h2>
+  <!-- for multiple class -->
+  <h2 [ngClass]="messageClasses">Practice to successed in Accenture 6</h2>
+  
   `,
-  // styleUrls: ['./test.component.css']
   styles: [`
-    h1{color:red}
-  `]
+.text-success{
+  color:green;
+}
+.text-danger{
+  color:red;
+}
+.text-special{
+  font-style:italic;
+}
+`]
 })
 export class TestComponent implements OnInit {
 name ="Amit Chaurasiya"
-myId = "testID"
-isDiabaled=false;
+successClass="text-success"
+hasError= true;
+isSpecial=true;
+messageClasses ={
+  "text-success": !this.hasError,
+  "text-danger" : this.hasError,
+  "text-special" : this.isSpecial
+}
 
   constructor() { }
 
