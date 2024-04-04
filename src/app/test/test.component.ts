@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  // selector: 'app-test',
-  // selector: '.app-test',
-  selector: '[app-test]',
-  // templateUrl: './test.component.html',
+  selector: 'app-test',
   template: `<h1>
     <!-- String Interpolation -->
     {{"welcome"+ name}} 
   </h1>
-  <h2>{{4+2}}</h2>
-  <h4>{{name.length}}</h4>
-  <h5>{{name.toUpperCase()}}</h5>
-  <h2>{{greetUser()}}</h2>
-  <h4>{{siteUrl}}</h4>
+  <input [id]="myId" type="text" value="Sumit">
+   <!-- Interpolation not worked on boolean value -->
+  <input disabled={{isDiabaled}} id={myId} type="text" value="Sumit">
+  <!-- Property binding worked on boolean value -->
+  <input [disabled]="isDiabaled" id={myId} type="text" value="Sumit"> 
+
   `,
   // styleUrls: ['./test.component.css']
   styles: [`
@@ -22,7 +20,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 name ="Amit Chaurasiya"
-siteUrl = window.location.href;
+myId = "testID"
+isDiabaled=false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -30,5 +30,4 @@ siteUrl = window.location.href;
   greetUser(){
     return "Hello" +this.name
   }
-
 }
