@@ -8,10 +8,12 @@ import { EmployeeserviceService } from '../employeeservice.service';
 })
 export class EmpDetailComponent implements OnInit {
   employees :any[] =[]
+  errorMsg="";
   constructor(private _employeeService : EmployeeserviceService) { }
 
   ngOnInit(): void {
-    this._employeeService.getEmployee().subscribe(data=>this.employees=data)
+    this._employeeService.getEmployee().subscribe(data=>this.employees=data,
+     error=>this.errorMsg=error); 
   }
 
 }
